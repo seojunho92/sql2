@@ -27,7 +27,7 @@ where lower(last_name) = 'higgins';
 select concat('Hello', 'World') -- concat : 단어를 붙여준다.
 from dual;
 
-select substr('HelloWorld', 2, 5) -- substr : 특정 위치의 단어를 자른다.
+select substr('HelloWorld', 2, 5) -- substr(index, length / index ~ length까지 범위) : 특정 위치의 단어를 자른다.
 from dual;
 select substr('Hello', -1, 5)
 from dual;
@@ -46,10 +46,16 @@ from employees;
 select rpad(salary, 5, '*') -- rpad : 필드의 너비를 정하고 오른쪽을 채운다. 
 from employees;
 
+-- 과제] 사원들의 이름, 월급그래프를 조회하라.
+--      그래프는 $1000 당 * 하나를 표시한다.
+select last_name, lpad(' ', salary / 1000 + 1, '*') sal
+from employees
+order by sal desc;
+
 select replace('JACK and JUE', 'J', 'BL') -- replace : 특정 글자를 바꾼다.
 from dual;
 
-select trim('H' from 'Hello')
+select trim('H' from 'Hello') -- trim : 머리와 꼬리만 자르고 몸통은 건들지않는다.
 from dual;
 
 select trim('l' from 'Hello')
@@ -124,7 +130,7 @@ select last_name, trunc((sysdate - hire_date) / 365)
 from employees
 where department_id = 90;
 
-select months_between('2022/12/31', '2022/12/31') -- months_between : 몇달차이인지 구해주는 API
+select months_between('2022/12/31', '2021/12/31') -- months_between : 몇달차이인지 구해주는 API
 from dual;
 
 select add_months('2022/07/14', 1) -- add_months : 몇달 뒤의 날짜를 알수있는 AIP
@@ -144,9 +150,3 @@ from dual;
 select last_name, last_day(hire_date)
 from employees
 where months_between(sysdate, hire_date) >= 12 * 20;
-
--- 과제] 사원들의 이름, 월급그래프를 조회하라.
---      그래프는 $1000 당 * 하나를 표시한다.
-select last_name, lpad(' ', salary / 1000 + 1, '*') sal
-from employees
-order by sal desc;

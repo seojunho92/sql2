@@ -44,7 +44,7 @@ where last_name = 'King';
 
 select last_name, hire_date
 from employees
-where hire_date between '02/01/01' and '02/12/31';
+where hire_date between '2002/01/01' and '2002/12/31';
 -----------------------------
 
 select employee_id, last_name, manager_id
